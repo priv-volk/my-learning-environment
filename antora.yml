@@ -3,7 +3,7 @@ title: My Learning Environment
 version: "English"
 # display version: "1.0.0"
 display version: "English"
-start_page: ROOT:index.adoc
+start_page: ROOT:pages:index.adoc
 nav:
 - modules/ROOT/nav_root.adoc
 asciidoc:
