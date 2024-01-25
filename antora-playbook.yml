@@ -5,7 +5,7 @@ site:
 content:
   sources:
   - url: https://github.com/priv-volk/my-learning-environment.git
-    start_path: ./.
+    start_path: main
     #my-learning-environment
     #modules/ROOT/pages
     branches: HEAD
