@@ -15,5 +15,3 @@ runtime:
   fetch: true
 output:
   dir: ./server/build/site
-asciidoc:
-  relativizePageRefs: true
