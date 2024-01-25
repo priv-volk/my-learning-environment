@@ -4,7 +4,7 @@ site:
   #start_page: component-b::index.adoc
 content:
   sources:
-  - url: modules
+  - url: https://github.com/priv-volk/my-learning-environment/tree/main/modules
     start_path: docs
     branches: HEAD
 ui:
