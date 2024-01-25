@@ -1,17 +1,12 @@
 site:
     title: My Learning Environment
     url: https://docs.demo.com
-content:
-    sources:
-    - url: 
-        start_path: docs
-        branches: HEAD
 
 content:
     sources:
     - url:
-        branches: [main, main]
         start_path: docs
+        branches: HEAD
 ui:
     bundle:
         url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
