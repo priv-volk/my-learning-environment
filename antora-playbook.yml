@@ -11,7 +11,7 @@ ui:
     # Uncomment for development against local ui
     # url: ../antora-ui/antora-index-ui/build/ui-bundle.zip
     # Uncomment for production build
-    url: ./node_modules\@asciidoctor\core\dist\
+    url: ../node_modules\@asciidoctor\core\dist\
     snapshot: true
   #upplemental_files: ./supplemental_ui
 runtime:
