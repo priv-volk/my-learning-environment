@@ -1,0 +1,20 @@
+:page-partial:
+
+[#EQS_ComplianceCockpit]
+= The {cockpit-name} User Manual
+
+include::English@eqs-doc::partial$intro/cockpit.adoc[]
+
+== xref:approval-manager:approval-manager_intro.adoc[_Approval Manager_]
+
+include::English@eqs-doc::partial$intro/approval-manager.adoc[]
+
+== xref:integrity-line:integrity-line_intro.adoc[_Integrity Line_]
+
+include::English@eqs-doc::partial$intro/integrity-line.adoc[]
+
+== xref:policy-manager:policy-manager_intro.adoc[_Policy Manager_]
+
+include::English@eqs-doc::partial$intro/policy-manager.adoc[]
+
+//-

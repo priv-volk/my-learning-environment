@@ -1,0 +1,1204 @@
+= Most important Git commands
+
+== What is Git?
+https://www.typo3lexikon.de/server/git.html
+
+Use Git Bash as Command Line Tool!
+The VSC Terminal
+Use Git Bash in the terminal.
+In the command line you always see, which is your current working branch (branch that is checked out).
+Split terminal via 
+
+bash+ (arrow down) > Split Terminal > Git Bash
+
+== General
+
+Change directory in Git Bash:
+cd "/drive/folder/subfolder" > no colon after the drive letter!!
+e.g.: "/c/Git/compliance-docs/compliance-cockpit"
+
+Create new branch:
+git branch [branch name]
+
+Checkout branch:
+git checkout [branch name] 
+
+Create branch and checkout new branch:
+git checkout -b [branch name]
+
+merge branch: 
+1) checkout "receiving" branch
+2) git merge --no-ff --no-commit [name of branch you want to "insert" in receiving branch]
+
+== Compliance Repo
+
+Clone Compliance Repo:
+git remote set-url origin ssh://git@gitlab.eqs.tools:8443/compliance/user-manuals/compliance-cockpit-docs.git
+
+Delete existing HTML output folder:
+rm -rf server/build/docs-site
+
+Start Antora Server:
+open terminal
+cd to "/c/Git/compliance-docs/compliance-cockpit"
+run: npm run serve
+
+Generate HTML Output:
+open terminal
+cd to "/c/Git/compliance-docs/compliance-cockpit"
+run: npm run build
+
+=== playbook.yml
+
+Don't do any changes in amost any part of this file. The only section you can touch is the part below "start_path: ./content/
+In this section you determine, which branch to build. 
+When you uncomment "branches: HEAD", Git builds the currently open branch.
+NOTE: You can also build two branches at the same time. Right after the opening square bracket, name the English branch and right before the closing square bracket, name the German branch. 
+
+=== Open HTML output of docs
+
+==== im Browser zum Öffnen des Branches "english" der Doku
+
+http://localhost/eqs-doc/English/
+
+==== Open random branch
+
+http://localhost/eqs-doc/[branch name]/
+
+== IR Repo
+
+"/c/git/ir-cockpit-docs"
+
+Start Antora Server:
+open terminal
+cd to "/c/Git/antora-docs/server"
+run: node index.js
+
+Generate HTML Output:
+open a second terminal (split terminal)
+cd to "/c/Git/antora-docs"
+run: npm run antora-index
+
+== Documenting with GitLab and Antora (Getting started)
+
+== Persons to get support:
+
+Jaouher, Agustin or Radu
+
+== GitLab
+
+=== Invite new user as "Developer"
+
+allows the member to sync his local repo with GitLab.
+
+> Gitlab-Seite aufrufen: https://gitlab.eqs.tools/ 
+> via SSO (LDAP) anmelden.
+> open repo (IR COCKPIT docs)
+> click "Project Information > Members" in the left sidebar
+> click "Invite Members" at the top right
+> enter e-mail address from new member
+> select role: "Developer"
+> click "Invite"
+
+=== Install Git
+
+Tutorial: https://medium.com/devops-with-valentine/2021-how-to-your-ssh-key-for-gitlab-on-windows-10-587579192be0
+
+=== ssh Key
+
+generate SSH key: https://gitlab.eqs.tools/help/user/ssh.md
+
+=== Repositories
+
+checkout Repositories
+
+==== Repository for the manual sources
+
+git clone https://gitlab.eqs.tools/platform1/user-documentation-and-support/ir-cockpit-docs
+
+==== Repository to build html output
+
+git clone https://gitlab.eqs.tools/platform1/user-documentation-and-support/antora-docs
+
+== Visual Studio Code (VSC)
+
+Install VSC
+
+=== Extensions
+
+Asciidoc > asciidoctor.asciidoctor-vscode
+Asciidoctor-vscode > joaompinto.asciidoctor-vscode
+Crowdin > Crowdin.vscode-crowdin
+Dev Containers > ms-vscode-remote.remote-containers
+Docker > ms-azuretools.vscode-docker
+German Language Pack for VSC > MS-CEINTL.vscode-language-pack-de
+Git History Diff > huizhou.githd
+GitLens -- Git Supercharged > eamodio.gitlens
+HTML Preview > ty4z2008.html-preview
+WSL > ms-vscode-remote.remote-wsl
+
+=== Node
+
+You need Node to execute the build commands for antora.
+
+Installing Node requires Admin rights on local machine. If this is not available you must contact IT Operations and ask for installation.
+Tell IT Ops to install the full package including all the modules > use the msi installer.
+
+> Download/Install node and npm: https://kinsta.com/blog/how-to-install-node-js/
+> use the msi installer. The installer also carries the Node.js package manager (npm) within it. It means you don't need to install the npm separately.
+> Generate an Access Token in JFrog Artefactroy
+>> login on https://registry.eqs.tools/ui/repos/tree/General/bower
+>> Use SAML access
+>>> For support ask Agustin or SRE Team: https://insight.eqs.com/pages/viewpage.action?pageId=162799837
+
+Open global .npmrc file (make sure you pick the right one. In case of doubt, ask a developer who uses Windows, e.g., Agustin).
+> enter required details in .npmrc:
+In line 2 enter the user name (username=vhauss)
+In line 3 enter the e-mail address (email=volker.hauss@eqs.com)
+In line 5 enter the generated token (_authToken=)
+
+=== npm
+
+if not done via node msi installer:
+> Install node modules, e.g., node express
+> use: npm install <module name>
+
+=== Search in VSC
+
+1) Click the magnifying glass at the top left 
+2) Enter your search string
+
+If you want to search in a specific part of the repo, you can delimit the search range
+
+Use: "files to include" and "files to exclude"
+
+==== Syntax
+
+modules/crm/pages, modules/ROOT/partials
+
+=== VSC Terminal
+
+1. Start the Antora Server
+open terminal
+cd to "/c/Git/antora-docs/server"
+run: node index.js
+
+2. Generate HTML Output
+open a second terminal (split terminal)
+cd to "/c/Git/antora-docs"
+run: npm run antora-index
+
+3. Manage branches
+> create branches, merge branches, etc
+open a third terminal (split terminal)
+cd to ir-cockpit-docs
+>> create new branch: git branch [branch name]
+>> change branch: git checkout [branch name]
+>> combine the previous two steps: git checkout -b [branch name] (creates and checks out the new branch)
+>> merge branch: 
+>>> checkout "receiving" branch
+>>> git merge --no-ff --no-commit [name of branch you want to "insert" in receiving branch]
+
+== Documentation Output
+
+* The title of the documentation is defined in 'playbook.yml' in the repo 'antora-builder'.
+** Consequently this title redides over all the languages. You can only have one title. > Use an English title.
+* The title of the nagivation is defined in 'antora.yml' in the repo 'ir-cockpit-docs'. Can be defined for each language individually.
+** Define it in 'master', 'deutsch', etc
+* The titles in the 'COCKPIT-APPS' dropdown are defined in the 'header-content.hbs' in the repo 'antora-ui'
+
+Die PDFs muss man sowohl in der ir-cockput-docs repo ändern (inhalt) sowie in der antora-ui repo (header design/layout) ändern
+
+== ASCII-DOC Repository
+:toc:
+:toclevels: 2
+:doctype: book
+
+== QUICK LINKS
+
+Before you move on to read about Asciidoc and Gitlab. Here are links to the SSG, UI and actual Documentation on the developemnt server.
+
+=== BUILD REPO
+There is an automated SSG on the master branch, which should not be touched. However, you can clone the slim version from the Antora branch and use it to test locally on your machine:
+- https://gitlab.eqs.tools/platform1/user-documentation-and-support/antora-docs/-/tree/antora[EQS Docs Generator]
+
+=== UI REPO
+You should not need to know about this. But here it is anyways:
+- https://gitlab.eqs.tools/platform1/user-documentation-and-support/antora-ui[EQS Docs UI]
+
+=== OUR URL
+There will probably be at leas 2 URLs. For now there is only the development server. You should be able to push and verify your changes on it:
+- https://docs-cockpit.eqs.dev/
+
+== Basic rules for writing in AsciiDoc
+
+=== Headlines
+
+A complete headline consists of an anchor and a headline title. The anchor preceeds the title.
+
+The headline title is prefixed with a equal sign "=" and a space.
+
+Add one "=" if you want to lower the hierarchy of the headline.
+
+Each headline must be preceeded by an anchor.
+
+When you introduce a new hierarchy that is lower, it must be "level+1" compared to the preceeding headline.
+
+When you want to jump up in the hierarchy, you can do as you like.
+
+You can only have (and you must have) ONE headline of level 1.
+
+==== Anchor Structure
+
+Anchors are framed with square brackets "["
+
+Anchors contain no space.
+
+Prefix an anchor with a hash "#"
+
+The structure of an anchor is as follows: 
+
+Each anchor starts with the anchor of the first level headline, e.g., [#CRM]
+
+A lower level (level "base+1") of a headline is introduced with an underscore "_", e.g., [#CRM_Contacts]
+
+With each further level you extend the anchor, e.g., headline level 3: [#CRM_Contacts_ContactOverview]
+
+===== Spelling Convention
+
+Use underscores only for introduction of levels. Use CamelCase spelling if you use compound terms (e.g., ContactOverview).
+
+==== Syntax
+
+== Headline (first level)
+
+=== Headline (second level)
+
+==== Headline (third level)
+
+etc
+
+==== Example
+
+[#IM]
+== Insider Manager
+
+[#IM_Settings]
+=== Settings
+
+[#IM_Settings_DataEditor]
+=== Data Editor CMS
+
+=== Paragraphs
+
+Regular text is written in paragraphs. A new paragraph is introduced wiht an empty line.
+
+You can also have soft line breaks in a paragraph. Use space and the "+" sign at the end of a sentence to set a soft line break.
+
+If you want to write bold text, use *text*.
+If you want to write italic text, use _text_.
+
+=== Links
+
+With a link you refer to anchors that you set to any of the headlines in the manual. 
+
+If you want to refer to a table or an image with a link, you can also set an achor on top of the table or the image.
+
+Mark links with "xref:"
+
+==== Syntax
+
+xref:anchor[label]
+
+Use the anchor without the preceeding hash "#".
+
+The label will be shown as the link title in the manual.
+
+==== Link Types
+
+===== Internal Link (Link that remains in the application)
+
+Assume you have a module 'Insider Manager' and you want to point from one end in 'Insider Manager' to another. Then you can use the following syntax:
+
+xref:anchor[label]
+
+====== Example
+
+xref:IM_Settings_DataEditor[Data Editor CMS] 
+
+===== External Link (Link that points to a different module (application))
+
+Assume you have the modules 'CRM' and 'Investors' and you want to point from 'Investors' (where you define the link) to 'CRM' (where you can find the anchor). Then you can use the following syntax:
+
+xref:module:filename#anchor[label]
+
+====== Example
+
+xref:crm:crm-intro.adoc#CRM_Contacts_ContactOverview[See the Contact Overview Page]
+
+NOTE: You can use the filename "crm-intro-adoc" for all anchors that appear in files that are included in "crm-intro-adoc"
+
+===== Link to an External Website
+
+====== Syntax
+
+protocol://URL[Label]
+
+====== Example
+
+https://www.eqs.com/de/ueber-eqs/kontakt/[unseren Support]
+
+==== Undo Links in Output File
+
+If you don't want to show an active link in an output file (e.g., for an sample email address or sample URL) put a backslash (\) at the beginning of the string.
+
+\www.google.de
+\john.doe@eqs.com
+
+=== Special Characters
+
+==== Avoid line break inside a label (protected space)
+
+Write *IN&#160; TEXT* instead of *IN TEXT*. That prevents a line break between "IN" and "TEXT".
+Another option is &nbsp;.
+
+=== Lists
+
+Frame each list with an empty line.
+
+End each line with a space and a "+" sign.
+
+The empty line at the end of the list must be followed by "//-" and another empty line.
+
+==== Ordered Lists
+
+Ordered lists are marked with a period and a space.
+
+For each sub-level add one more period.
+
+Avoid empty lines within the ordered list. An empty line will cause to restart the counting with 1.
+
+===== Example
+
+. List item 1
+.. List item 1a
+.. List item 1b
+. List item 2
+
+If your ordered list is broken and you want to continue the numbering from above, preceed the new sequence of list items with [start=x], x == the number you want to continue with.
+
+===== Example
+
+[start=3]
+. List item 3
+
+==== Unordered Lists
+
+Unordered lists are marked with an asterisk and a space.
+
+For each sub-level add one more asterisk.
+
+===== Example
+
+* List item 1
+** List item 1a
+** List item 1b
+* List item 2
+
+==== Enclose in open block
+
+If you plan to attach blocks to a list item as a sibling of a nested list, the most robust way of creating that structure is to enclose the nested list in an open block. That way, it's clear where the nested list ends and the current list item continues.
+
+Here's an example of a list item with a nested list followed by an attached paragraph. The open block makes the boundaries of the nested list clear.
+
+* grandparent list item
++
+--
+** parent list item
+*** child list item
+--
++
+paragraph attached to grandparent list item
+
+Insert a list between "+" icons, if the list section belongs to the indented level from above
+
+"image" or "text"
+blank line for the following text
++
+In the *Select* mode, you can +
+
+*** delete one or more notes at the same time. +
+.... Select the notes you would like to delete. +
+.... Click on the *Delete* button with the *trashcan* icon. +
+
++
+no blank line for the following text
+"text"
+
+=== Images
+
+==== Syntax
+
+Describe the path to the location where the image can be found.
+
+Introduce this path with the directive "image::", followed by the branch, the repository and the folders in which the image can be found. Close the path with a set of square brackets "[]".
+
+Frame this directive with empty lines.
+
+Antora will show the image between the preceeding and the succeeding paragraph.
+
+image::branch@repository::image$/[path to image][]
+
+Use the square brackets to define image attributes. These can be:
+
+an alternative text, in case the image doesn't show: "alt=text"
+a specific width, to limit the image width: "width=pix value"
+a specific height, to limit the image height: "height=pix value"
+If you delimit only the height you can also go like [,,480]
+
+Separate the attributes with a comma and no space.
+
+==== Example
+
+image:English@eqs-doc::image$/screenshots/crm/004.png[alt=Events&Meetings,width=640,height=480]
+
+==== Icons
+
+For icons you can use the inline directive for images. That means the icon will be shown in the line of the text. The directive for inline icons uses only one colon: "image:", followed by the branch, the repository and the folders in which the icon can be found. Close the path with a set of square brackets "[]".
+
+==== Syntax
+
+image::branch@repository::image$[path to icon][]
+
+==== Example
+
+image:English@eqs-doc::image$icons/cms/009.png[]
+
+=== Reuse Content
+
+You can reuse content that applies for more than one part in the user manual. Write your content once in a separate file and use this file various times. If you want to reuse the content over different applications, store the content in the module "ROOT/partials/".
+
+Use the directive "include::" to refer to the reuseable text.
+
+Describe the path to the location where the include file can be found.
+
+Introduce this path with the directive "include::", followed by the branch, the repository and the folders in which the reuseable file can be found. Close the path with a set of square brackets "[]".
+
+Use "leveloffset=" in the square brackets to determine the level (headline hierarchy) the reuseable content shall be included. (Number == number of equal signs that are added.)
+
+Frame this directive with empty lines.
+
+==== Syntax
+
+include::branch@repository:module:partial$[path to include file][]
+
+==== Example
+
+include::English@eqs-doc::partial$mailing/create-publish_content_six-connexor.adoc[leveloffset=+1]
+
+==== Using Tags
+
+In Asciidoc markup we can include or exclude text based on the existence of document attributes or based on the value of a document attribute. Therefore we use the macros ifdef, ifndef and ifeval. If we want to include some content if the document attribute sample is set we can use the following syntax:
+	
+ifdef::sample[Content is shown when sample attribute is set]
+ 
+ifdef::sample[]
+Content is shown when sample attribute is set
+endif::sample[]
+
+If we want to include some content if the attribute is not set we use ifndef:
+
+ifndef::sample[Content is shown when sample attribute is NOT set]
+ 
+ifndef::sample[]
+Content is shown when sample attribute is NOT set
+endif::sample[]
+
+We can even use multiple attributes for these macros. If the attribute names are , separated only one of the attributes need to be set to include the content. If we use the + separator all attributes must be set to include the content.
+
+In the following sample Asciidoc markup we see several usages of the ifdef and ifndef macros:
+	
+|===
+| Attributes
+ 
+|
+ifdef::intermediate[:intermediate:]
+ifndef::intermediate[:intermediate!:]
+ 
+|
+ifdef::advanced[:advanced:]
+ifndef::advanced[:advanced!:]
+ 
+|===
+ 
+ 
+ifdef::advanced[]
+This is only visible if we set the advanced attribute.
+endif::advanced[]
+ 
+ifdef::intermediate,advanced[]
+Here is some content for the intermediate or advanced readers, which is visible if the attributes intermediate or advanced are set.
+endif::intermediate,advanced[]
+ 
+ifdef::intermediate+advanced[]
+Here is some content for the intermediate and advanced readers, which is visible if the attributes intermediate AND advanced are set.
+endif::intermediate+advanced[]
+
+If we generate HTML output and set and unset the intermediate and advanced document attributes we see that content is included or not:
+
+===== Attributes
+
+	:intermediate!:
+	:advanced!:
+	
+===== Attributes
+
+	:intermediate!:
+	:advanced:
+	
+	This is only visible if we set the advanced attribute.
+	Here is some content for the intermediate or advanced readers, which is visible if the attributes intermediate or advanced are set.
+	
+===== Attributes
+
+	:intermediate:
+	:advanced!:
+	
+	Here is some content for the intermediate or advanced readers, which is visible if the attributes intermediate or advanced are set.
+	
+===== Attributes
+
+	:intermediate:
+	:advanced:
+	
+	This is only visible if we set the advanced attribute.
+	Here is some content for the intermediate or advanced readers, which is visible if the attributes intermediate or advanced are set.
+	Here is some content for the intermediate and advanced readers, which is visible if the attributes intermediate AND advanced are set.
+
+=== Tables
+
+Tables are framed with empty lines.
+
+Start the table with a cell specifier. Mark the cell specifier with square brackets "[".
+Add a table delimiter "|===" in the next line after the cell specifier.
+
+Use the pipe "|" as cell sepeartor.
+
+In the cell specifier you can, among others, specify the number of cells per row, the format of the cells and the grid pattern.
+
+==== Grid Pattern
+
+grid=rows = frame plus horizontal lines 
+grid=cols = frame plus vertical lines
+grid=none = no grid
+frame=none = no frame
+options=header = first line in bold (headline)
+
+==== Table Structure
+
+Build a table with 5 columns like this:
+
+[cols=",,,,"]
+
+Delimit the number of columns with double quotes. Each comma tells the pipe in the table that it is a additional column instead of a new table row (wit n commas you have n+1 cells available per row).
+
+For each cell you can define formating options with operators. When you do it in the "cols=" directive, formating will be applied to all the cells in the column. But you can prefix it individually at each pipe directly in the table. Individual operators by the pipe overule the operators in the "cols=" directive.
+
+==== Table Format
+
+You can use the following operators (and combine them as you like):
+
+Use x% to determine the relative width of a cell 
+	[cols="20%,80%"]: Column 1 has a fifth of the length of column 2.
+Use x+ to merge cells horizontally across x cells.
+Use .x+ to merge cells vertically across x cells.
+Use ^ to center the text horizontally.
+Use .^ to center the text vertically.
+Use < to align the cell to the left.
+Use > to align the cell to the right.
+Use a if you want to treat the cell like a standalone AsciiDoc document which supports block elements such as lists, delimited blocks, and block macros.
+Use s to format the text in the cell bold.
+Use m to format the text in the cell monospace (courier].
+Use e to format the text in the cell italic.
+Use h to format the text in the cell headline (use it in the "cols=" directive for a vertical headline). Alternative for bold head line: No empty line between the initial table delimiter and the first row and an empty line before the second row.
+
+==== Example
+
+[cols=".^a,.^a",frame=none,grid=none]
+
+|===
+| Line 1, Column 1 | Line 1, Column 2 
+| Line 2, Column 1 | Line 2, Column 2 
+|===
+
+==== Assign a Role to a Table
+
+Like with all blocks, you can add a role to a table using the role attribute. The role attribute becomes a CSS class when converted to HTML. The preferred shorthand for assigning the role attribute is to put the role name in the first position of the block attribute list prefixed with a . character, as shown here:
+
+[.name-of-role]
+
+Use a separate set of square brackets for the role, as below in "Nesting Tables".
+
+==== Bullet points in tables
+
+Add an empty line prior to the first bullet point
+
+Prefix the pipe with an "a".
+Use "*" for bullet points.
+	
+Example
+	
+	a|
+	* Bullet text
+
+==== Nesting Tables
+
+Table cells marked with the table operator "a" support nested tables in addition to normal block content. To distinguish the inner table from the enclosing one, you need to use !=== as the table delimiter and a cell separator that differs from that used for the enclosing table. The default cell separator for a nested table is !, though you can choose another character by defining the separator attribute on the table.
+
+NOTE: Although nested tables are not technically valid in DocBook 5.0, the DocBook toolchain processes them anyway.
+
+The following example contains a nested table in the last cell. Notice the nested table has its own format, independent of that of the outer table:
+
+[.name-of-role]
+[cols="1,2a"]
+|===
+| Col 1 | Col 2                                 |-----------+------------------------|
+                                                | Col 1     | Col 2                  |
+| Cell 1.1                                      |-----------+------------------------|
+| Cell 1.2                                      | Cell 1.1  | Cell 1.2               |
+                                                |-----------+------------------------|
+| Cell 2.1                                      | Cell 2.1  | Cell2.2                |
+| Cell 2.2                                      |           |                        |
+                                                |           ||----------+------------|    
+[cols="2,1"]                                    |           || Col 2.1  | Col 2.2    | 
+!===                                            |           ||----------+------------|
+! Col 2.1 ! Col 2.2                             |           || C 1.1    | C 1.2      |
+                                                |           ||----------+------------|
+! C 1.1                                         |-----------+------------------------|
+! C 1.2
+
+!===
+
+|===
+
+== GITLAB - CHEATSHEET
+
+=== GitLab ssh certificate
+
+Your identification has been saved in C:\Users\vhauss/.ssh/id_ed25519.
+Your public key has been saved in C:\Users\vhauss/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:0IYY+bIHGGiq5M3FJhHpEuzrFfGVUR/Ne+DCqt5G0/8 volker.hauss@eqs.com
+
+=== GitLab commands
+
+$ git clone ssh://git@gitlab.eqs.tools:8443/platform1/ir-cockpit-docs.git
+
+=== New location of repo
+
+ ssh://git@gitlab.eqs.tools:8443/platform1/user-documentation-and-support/ir-cockpit-docs.git
+
+=== Messages
+
+	gitlab fatal no upstream configured for branch 'xy'
+	
+=== Build with antora
+
+	antora playbook.yml
+	
+	If you run into an error like this:
+	Error: Unknown Error: See cause (url: https://gitlab.eqs.tools/platform1/user-documentation-and-support/ir-cockpit-docs.git)
+    at transformGitCloneError (C:\Users\vhauss\AppData\Roaming\npm\node_modules\@antora\site-generator-default\node_modules\@antora\content-aggregator\lib\aggregate-content.js:794:22)
+    at C:\Users\vhauss\AppData\Roaming\npm\node_modules\@antora\site-generator-default\node_modules\@antora\content-aggregator\lib\aggregate-content.js:184:17
+    at async loadRepository (C:\Users\vhauss\AppData\Roaming\npm\node_modules\@antora\site-generator-default\node_modules\@antora\content-aggregator\lib\aggregate-content.js:173:7)
+    at async Promise.all (index 0)
+    at async Promise.all (index 0)
+    at async generateSite (C:\Users\vhauss\AppData\Roaming\npm\node_modules\@antora\site-generator-default\lib\generate-site.js:18:39)
+    at async run (C:\Users\vhauss\AppData\Roaming\npm\node_modules\@antora\cli\lib\cli.js:17:21)
+Caused by: Error: unable to verify the first certificate
+    at TLSSocket.onConnectSecure (_tls_wrap.js:1502:34)
+    at TLSSocket.emit (events.js:314:20)
+    at TLSSocket._finishInit (_tls_wrap.js:937:8)
+    at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:711:12)
+	
+	use the build command without certification check:
+	
+	NODE_TLS_REJECT_UNAUTHORIZED=0 npm run build
+	
+=== Error Messages
+
+==== Error: Content repository not found or requires credentials
+
+==== Solution: Create new "Personal access token" in GitLab
+	
+	How?
+	1) Open "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html"
+	2) Follow the steps in the section "Create a personal access token"
+	2a) Name? Something like ir-cockpit-docs
+	2b) Which "scopes"? Select all
+	3) Click "Create personal access token"
+	4) Copy the token in a txt-file (to make sure you keep it)
+	5) Open "playbook.yml" in repo "antora-docs", branch "antora"
+	6) Modify content: > sources: > - url:
+	6a) https://vhauss:[new token value]@gitlab.eqs.tools....
+	6b) save file
+	
+==== Error: Author identity unknown
+
+==== Solution: Set your name and email address in GitLab (even though the name and email address are already there!)
+
+1) Run:
+	1a) git config --global user.email "volker.hauss@eqs.com"
+	1b) git config --global user.name "vhauss"
+2) If you want to test that the username is there:
+	2a) git config --get-all user.name
+
+===== Error: wrong language version in antora.yml
+
+	npm ERR! code 1
+	npm ERR! path C:\Git\antora-docs
+	npm ERR! command failed
+	npm ERR! command C:\WINDOWS\system32\cmd.exe /d /s /c antora 
+	playbook-index.yml --fetch --stacktrace
+
+	npm ERR! A complete log of this run can be found in:
+	npm ERR!     C:\Users\vhauss\AppData\Local\npm-cache\_logs\2022-01-25T09_03_14_177Z-debug.log
+	
+	This error occurs when you build two branches and the antora.yml shows the same language version.
+	Antora requires that there must be different language versions defined in the antora.yml file (lines 3 AND 5).
+	If you want to build two branches in the same language you must rename one language to e.g. English_A.
+
+=== Translation
+==== address translated files in the root folder
+
+	xref:German@index.adoc#EQS_IRCockpit[The {cockpit-name}]
+
+oder so in index.adoc:
+
+	include::German@eqs-doc::partial$docs-conventions.adoc[]
+
+=== Branch
+
+==== New branch not shown in GitLab
+
+You created a new branch.
+You pushed it to GitLab via VSC.
+Branch is not listed in GitLab.
+
+What do you do?
+
+Do: git push
+
+If you get this reply:
+fatal: The current branch [new-branch-name] has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+Do: git push --set-upstream origin [new-branch-name]
+
+==== Delete branch from GitLab
+
+	When the branch is already pushed to remote, you can delete it directly in the GitLab administrative console (https://gitlab.eqs.tools)
+
+	* log in. +
+	* open repo. +
+	* in the left sidebar: open "Repository > Branches". +
+	* navigate to the line with the name of your branch. +
+	* click the white trashcan in the orange field at the right.
+
+===== Delete branch locally
+
+	When the branch is not pushed to remote or it is already pushed:
+
+	do a "git branch -a" first
+
+	When you see your branch in this list, do a
+
+	git branch -d [branch name]
+
+	Branch is deleted on your local machine but still on remote.
+
+===== Delete branch on remote
+
+	git push origin --delete [branch name]
+	deletes the branch on GitLab.
+
+==== Create a GitLab branch from local branch:
+
+	git push origin [branch name]
+	use this command if your local branch cannot be found on GitLab.
+	
+=== Git configuration from Agustin
+
+	C:\Users\vhauss\.gitconfig
+	
+==== new = !sh -c 'git fetch && git checkout master && git pull origin master && git checkout -b $1' -
+
+	git new [brachname]
+	creates a new branch from master on Gitlab and checks it out to local machine
+	
+==== pulom = !sh -c 'git fetch && git checkout master && git pull origin master' -
+
+	git pulom
+	checks out master from GitLab to local machine
+	
+==== mom = !sh -c 'git fetch && git merge --no-ff origin/master' -
+
+	git mom master
+	merges GitLab master into local branch (avoids conflicts if someone eles is working on the same files in a different branch)
+	
+== The antora-docs repo
+
+=== Build the documentation
+
+. Open repo 'antora-docs' in VSC.
+. Open file playbook-index.yml
+. Enter branch name, you want to build. +
+.. You can build one or more branches at a time. Separate branch names with a comma and a space. +
+. Open a VSC terminal 'new terminal'.
+. Start the build server
+.. Change directory to 'server': cd server
+.. Run command 'node index.js'
+. Open a second VSC terminal 'new terminal'.
+. Run command 'npm run antora-index'
+. Open the built documentation in 'C:\Git\antora-docs\server\build\site\eqs-doc\English\'.
+
+=== Files to preserve
+
+For security reasons I created a "private" branch (doc-build-vhauss) in the antora-docs repo. This branch shall help to avoid unwanted changes on antora-doc 'master'.
+In this branch I can configure some files for personal needs.
+These files need to be preserved before I merge 'master' into my private branch.
+
+* playbook-index.yml
+
+== The documentation process
+
+image::eqs-doc::image$/workflows/repositories-servers_documentation-process.png[Documentation process]
+
+. Do changes: on GitLab in 'working branch' (branch name: CX0_DEV-*).
+
+=== Do PM review
+
+=== Do TW review
+
+=== Crowdin Translation Platform
+
+==== Upload source files to Crowdin
+
+. In VSC, open the working branch (CXO_DEV-*), which is ready to translate. 
+. Open a command line tool (e.g., CMD or VSC).
+. Go to the folder 'users/vhauss' (home of 'crowdin.yml').
+In 'crowdin.yml' you can determine restrictions.
+** use the "base_path" tag to determine the folder from which Crowdin grabs the source files.
+** use the "ignore" tag to determine filetype, folders to be ignored, etc.
+For uploads use the CLI Tool (Crowdin Command Line).
+. Depending on the crowdin configuration (crowdin.yml) you use
+** For IR Cockpit (crowdin.yml)
+Enter the command `crowdin push -b [branch name]`
+** For Compliance Cockpit (crowdin-cc.yml)
+Enter the command `crowdin push -b [branch name] -c crowdin-cc.yml`
+The folder name you enter here will be created as 'version branch' in Crowdin > use the JIRA ticket number
+Crowdin pushes the source files into the new version branch.
+
+==== Download translated files from Crowdin
+
+. Open a command line tool (e.g., CMD or VSC).
+. Go to the folder 'users/vhauss' (home of 'crowdin.yml').
+. Enter the command `crowdin pull -b [folder name] --language=de`.
+use `--language=de` to restrict the download of translated languages to German.
+see: https://developer.crowdin.com/language-codes/ for language codes
+Crowdin generates a folder 'de' in the "base_path".
+. Move this 'de' folder to your local machine.
+. Generate a new branch from `deutsch`. 
+Name of the branch: CXO_DEV-*_de
+. Insert the translated files into this new branch.
+. Compare the changes.
+. Build the documentation for the branches CXO_DEV-* and CXO_DEV-*_de.
+. When the result is satisfying, merge
+.. CXO_DEV-* into `englisch`.
+.. CXO_DEV-*_de into `german`.
+
+
+Eventually you want to go more into  Crowdin details:
+. Click the three dots at the end of the branch name's line
+. Select *Translate*
+. Click the *Filter options* icon at the top, next to the search field.
+. Select *Advanced Filter...*
+. Set *Approvals* to *Have translations after approval* (or any other filter option that applies)
+. Click the *FILTER* button
+
+==== Undo activities in Crowdin
+
+. Open the translation project
+. Click *Activity*
+. Click *UNDO* at the right end of the activity you want to undo
+
+==== Merge content to language's master branch.
+
+. Merge the working branch of the source language (CXO_DEV-*) into the English master branch `english`.
+
+==== Overrule DeepL for modified approved translations
+
+Before you import new translation files, you must set the value for the `Minimum Match Ratio` to 85%. That prevents DeepL to overwrite formerly approved translations that were modified mimimally. These strings then will show as untranslated with the latest approved translation as suggestion.
+
+Note: What you do here, you have to repeat all the time when you start a new import process!
+
+. Open your translation project in Crowdin.
+. Go to "Dashboard".
+. Click on "Pre-translation"
+. Select "via TM"
+. tick "Skip approved translations"
+. untick "Apply for untranslated strings only"
+. hit the keys `strg/shift/i` to open the Inspector.
+In the `Inspector` UI
+.. move the mouse over the inspector until the dialog at the right is highlighted.
+.. open this section.
+.. repeat these two steps until the value "100%" for `Minimum Match Ratio` is highlighted.
+.. change the value to "85%"
+.. close the inspector.
+.. import the new translation files.
+
+==== Regex Content Processor
+
+In `Regex Content Processor` you can define replacements of translation strings in the download files.
+For example the broken table definitions "|\|".
+`Regex Content Processor` can replace this with a simple pipe "|".
+
+What do you need to do?
+
+. Open your translation project in Crowdin.
+. Go to "Tools".
+. Click on `Regex Content Processor` > Details.
+. Define an "Export Rule".
+.. Click on the "plus" icon at the bottom right in the section.
+.. Select "File Content" in the field "Replace in".
+.. Enter the text (characters) to be replaced in the field "Find (regex)".
+If you want to use an "interpreted" character in clear text (e.g., the backslash), you must preceed it with a \.
+.. Enter the replacement text (characters) in the field "Replace".
+.. Click on button "Submit" at the bottom of the page.
+
+==== File Import Tweak
+
+In `File Import Tweak` you can hide strings for translation. They won't show in the Crowdin UI.
+
+What do you need to do?
+
+. Open your translation project in Crowdin.
+. Go to "Tools".
+. Click on `File Import Tweak` > Details.
+. Define a "Rule". 
+.. Select "Text" in the field "Key Property".
+.. Select a string of the line that you want to hide (e.g., `include::English`).
+.. Select "Hide" in the field `Do Action with the Key Object`.
+.. Click on the "Submit" button at the bottom of the page.
+
+==== Make variable name visible in Crowdin
+
+. Open your translation project in Crowdin.
+. Go to "Dashboard".
+. Open the file.
+. Open the view "Side-by-Side" (because ALL the strings are only visible there).
+. Click in the translation section of the required string.
+. Click on the "pencil" icon at the top.
+. Enter the name of the variable in the field `Context`.
+. Now you see the `Context` in the `String Details` at the top right.
+
+==== Glossary
+
+===== Glossary erweitern
+
+1) Exportiere Glossary in eine Excel-Datei
+2) Ergänze neue Einträge
+2a) Parts of speech:
+	Nomen			NOUN
+	Verb			VERB
+	Adjektiv		ADJ
+	Pronomen		PRON
+	Eigenname		PROPN
+	Bestimmer		DET
+	Zahlwort		NUM
+	Hilfswort		AUX
+	Symbol			SYM
+
+== Build PDFs
+
+== Merge branches
+
+== Send 'master' to 'staging' (Review changes for technical correctness)
+
+. On Gitlab: merge working branch to 'master'.
+. 'master' is merged automatically. 
+. Wait for 15 min > new merge is visible on staging.
+. Product Manager: Review changes
+. Technical Writer: Integrate changes into 
+
+//How can we integrate 'working branch' to this automated process?
+//Or can I merge the 'working branch' to master already here?
+
+== Send 'english' and 'deutsch' to Wordpress
+
+. Open GitLab (https://gitlab.eqs.tools/)
+. Open repo 'IR COCKPIT docs'
+. Change branch from *master* to *english*.
+. Click *Build* in the left sidebar.
+. Open the subfolder *Pipelines*.
+GitLab shows the current pipeline entries.
+In the first line you see your last commit: "Merge branch XXX into german" or "Merge branch XXX into english"
+. In the column *Stages*, click the double arrow facing to the right.
+. In the message box, click the *Play* icon at the right margin.
+. Gitlab exports the current content of the branches "german" and "english" to WordPress.
+It builds directly into production
+
+After a while I get a notification after the build is finished
+
+Look at https://newcockpit.eqs.com/login for production.
+
+image::eqs-doc::image$/screenshots/readme/antora-build/01_build_create-tag.png[]
+
+image::eqs-doc::image$/screenshots/readme/antora-build/02_build_name-tag.png[]
+
+. In the *Message* box you can add background info of the branch's content (e.g. branch name).
+. Click *Create tag* (at the bottom left).
+. Open Jenkins pipeline (https://jenkins.eqs.tools/view/Documentation/job/docs-server/).
+. Click "master".
+. Click *Jetzt bauen* (Build now). > builds staging.
+
+If you want to build QA or Prod
+. Click the tab *Tags (n)*
+. Click *Scan Multibranch Pipeline Now*
+This makes the newly created tag from GitLab visible here.
+
+image::eqs-doc::image$/screenshots/readme/antora-build/03_build_find-tag.png[]
+
+. Click the name of the newly created tag.
+. Click *Jetzt bauen* (Build now).
+
+image::eqs-doc::image$/screenshots/readme/antora-build/04_build_build-tagged-branch.png[]
+
+. When build is successful: The branch is available on QA.
+. Now you can export the branch to a zip file and send it to Crowdin.
+. When the translation returns successfully 
+.. Go back to GitLab.
+.. Open the repository 'IR COCKPIT docs'
+.. Click *Repository* in the left sidebar.
+.. Click *Branches* in the left sidebar.
+.. Click the *trashcan* icon next to the branch name of your working branch.
+This deletes the working branch.
+
+image::eqs-doc::image$/screenshots/readme/antora-build/05_delete-unnecessary-branch.png[]
+
+. When the working branch is deleted
+.. Go to VSC
+.. Open the repository 'IR COCKPIT docs'
+.. Checkout branch 'deutsch'
+.. Replace 'module' files with the the newly translated files from Crowdin.
+
+== Send translation files from 'QA' 'master' to Crowdin (See "Upload source files to Crowdin")
+
+== Set up JIRA tickets
+
+. Click *Create*
+. Set *Project* = "Development // IR COCKPIT" 
+. Set *Type* = "Documentation"
+. Set *Component* = "Documentation" 
+
+== Visual Studio Code
+
+=== Search 
+
+If you want to search in a specific folder structure (e.g., "ir" for Investors), enter the following in the field "files to include":
+
+modules/ir/pages/*.adoc
+
+If you want to search everywhere but in a specific folder structure (e.g., "ir" for Investors), enter the following in the field "files to exclude":
+
+modules/ir/pages/*.adoc
+
+== Wordpress
+
+=== Access Data
+
+    Preview url:	https://supportcenter.eqs.dev/  
+
+    Production url:	https://www.support-eqs.com/  
+
+    Username (Preview and Production):	supportcenter 
+
+    Password (Preview and Production):	Eqs@123 
+
+    WordPress Admin url: https://www.support-eqs.com/wp/wp-admin/ 
+
+    Username & Password: EQS IR COCKPIT Credentials 
+
+    JIRA project space: https://jira.eqs.com/secure/RapidBoard.jspa?rapidView=709&projectKey=INT_SUPCENT&view=planning.nodetail&quickFilter=2115&issueLimit=100  
+
+//-
+
+== Review checks
+
+=== 'include' directives
+
+	When target laguage is German:
+	Search for 'include::eqs-doc:'
+	Replace with 'include::German@eqs-doc:'
+
+	When target laguage is English:
+	Search for 'include::German@eqs-doc:'
+	Replace with 'include::eqs-doc:'
+
+=== 'image' directives
+
+	When target laguage is German:
+	Search for 'image::eqs-doc:'
+	Replace with 'image::English@eqs-doc:'
+
+	When target laguage is English:
+	Search for 'image::English@eqs-doc:'
+	Replace with 'image::eqs-doc:'
+
+=== soft linebreaks
+
+	compare the ' +' at the end of the lines between 'english' and 'deutsch'.
+
+=== Note blocks
+
+	. Search for [NOTE]
+	. See if note block is built like this:
+	
+	[NOTE]
+	=====================================================================
+	Wenn Sie einen Kontakt zu einer Verteilerliste hinzufügen möchten, haben Sie zwei Möglichkeiten:
+
+	* Klicken Sie in der xref::persons.adoc#CRM_Persons[grauen Befehlsleiste] auf *Auswählen*.
+
+	* Öffnen Sie in der xref::edit-person.adoc#CRM_EditPerson_ViewPerson_Data_Details_DistributionList[Informationsumgebung des Kontakts] den Abschnitt *Verteiler*.
+	=====================================================================
+
+=== 'include' variables
+	
+	Search for 'include::'
+	Look at the preceding lines for variables and translate their values
+
+=== Tables
+
+	Check for markup that looks like this: |\| 
+	This sequence contains two errors:
+	> Remove the backslash and compare the amount of pipes with the table in the source files.
+	e.g.: |\| 
+	> Check for untranslated sequences in these tables
+	e.g.: image::English@eqs-doc::image$screenshots/partials/editor/004.png[] \| Here you see the selected language of the template. |Hier sehen Sie die ausgewählte Sprache für die Vorlage.
+	
+=== Links with double underscore (__de)
+
+==== Fact
+	
+	When you link to Disclosure, Newswire or Communication, Antora is often (but not always) not able to dissolve the link (which contains a double underscore) correctly.
+	
+==== Solution
+
+	Introduce a variable for the link and use the variable instead:
+
+	:link-to-newswire: xref:newswire__de:newswire_intro.adoc#De_Newswire[Corporate News]
+
+	* Ihre {link-to-newswire}, xref:disclosure__de:disclosure_intro.adoc#DE_Disclosure[Insiderinformationen] 
+
+	Dissolve the variable with :!link-to-newswire:
