@@ -1,18 +1,13 @@
 site:
-    title: My Learning Environment
-    url: http://localhost
-
+  title: My Learning Environment
+  url: http://localhost
+  #start_page: component-b::index.adoc
 content:
-    sources:
-    - url:
-        start_path: docs
-        branches: HEAD
+  sources:
+  - url: https://gitlab.com/antora/demo/demo-component-a.git
+    start_path: docs
+    branches: HEAD
 ui:
-    bundle:
-        url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
-        snapshot: true
-runtime:
-  cache_dir: ./.cache
-  # fetch: true
-output:
-  dir: ./server/build/docs-site
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
