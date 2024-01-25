@@ -1,6 +1,6 @@
 site:
     title: My Learning Environment
-    url: https://docs.demo.com
+    url: http://localhost
 
 content:
     sources:
