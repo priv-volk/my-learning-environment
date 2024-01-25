@@ -3,18 +3,18 @@
 [#EQS_ComplianceCockpit]
 = The {cockpit-name} User Manual
 
-include::English@eqs-doc::partial$intro/cockpit.adoc[]
+//include::English@eqs-doc::partial$intro/cockpit.adoc[]
 
 == xref:approval-manager:approval-manager_intro.adoc[_App 1_]
 
-include::English@eqs-doc::partial$intro/approval-manager.adoc[]
+//include::English@eqs-doc::partial$intro/approval-manager.adoc[]
 
 == xref:integrity-line:integrity-line_intro.adoc[_App 2_]
 
-include::English@eqs-doc::partial$intro/integrity-line.adoc[]
+//include::English@eqs-doc::partial$intro/integrity-line.adoc[]
 
 == xref:policy-manager:policy-manager_intro.adoc[_App 3_]
 
-include::English@eqs-doc::partial$intro/policy-manager.adoc[]
+//include::English@eqs-doc::partial$intro/policy-manager.adoc[]
 
 //-
