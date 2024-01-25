@@ -1,0 +1,17 @@
+name: my-docs
+title: My Learning Environment
+version: "English"
+# display version: "1.0.0"
+display version: "English"
+start_page: ROOT:index.adoc
+nav:
+- modules/ROOT/nav_root.adoc
+asciidoc:
+    attributes:
+        cockpit-name: EQS COMPLIANCE COCKPIT
+        app-icon: app icon@
+        app-name: app name@
+        news-type: news type@
+        news-type-clear: news type name@
+        page-html-language: en
+        
