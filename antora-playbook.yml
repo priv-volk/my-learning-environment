@@ -6,7 +6,7 @@ content:
     sources:
     - url: https://github.com/priv-volk/my-learning-environment.git
     branches: HEAD
-    start_path: docs
+    start_path: modules
 ui:
   bundle:
     # Uncomment for development against local ui
