@@ -9,6 +9,6 @@ content:
         branches: HEAD
 ui:
     bundle:
-        url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+        url: ../node_modules/@eqs/antora-index-ui/ui-bundle.zip
         snapshot: true
     supplemental_files: ../supplemental_ui
