@@ -6,16 +6,14 @@ content:
     - url: 
         start_path: docs
         branches: HEAD
+
+content:
+    sources:
+    - url:
+        branches: [main, main]
+        start_path: docs
 ui:
-  bundle:
-    # Uncomment for development against local ui
-    # url: ../antora-ui/antora-index-ui/build/ui-bundle.zip
-    # Uncomment for production build
-    url: ../node_modules/@eqs/antora-index-ui/ui-bundle.zip
-    snapshot: true
-  #upplemental_files: ./supplemental_ui
-runtime:
-  cache_dir: ./.cache
-  # fetch: true
-output:
-  dir: ./server/build/docs-site
+    bundle:
+        url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+        snapshot: true
+    supplemental_files: ./supplemental_ui

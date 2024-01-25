@@ -1,0 +1,21 @@
+site:
+    title: My Learning Environment
+    url: https://docs.demo.com
+content:
+    sources:
+    - url: 
+        start_path: docs
+        branches: HEAD
+ui:
+  bundle:
+    # Uncomment for development against local ui
+    # url: ../antora-ui/antora-index-ui/build/ui-bundle.zip
+    # Uncomment for production build
+    url: ../node_modules/@eqs/antora-index-ui/ui-bundle.zip
+    snapshot: true
+  #upplemental_files: ./supplemental_ui
+runtime:
+  cache_dir: ./.cache
+  # fetch: true
+output:
+  dir: ./server/build/docs-site
