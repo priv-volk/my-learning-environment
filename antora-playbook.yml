@@ -10,3 +10,10 @@ ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
+runtime: 
+  cache_dir: ./.cache
+  fetch: true
+output:
+  dir: ./server/build/site
+asciidoc:
+  relativizePageRefs: true
