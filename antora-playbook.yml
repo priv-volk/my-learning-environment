@@ -4,10 +4,16 @@ site:
   #start_page: component-b::index.adoc
 content:
   sources:
+  #Gib hier den Link zum Repository an. Das kann in GitHub, GitLab oder in einem anderen Versionierungssystem sein
   - url: https://github.com/priv-volk/my-learning-environment.git
+  #Wenn die 'antora.yml' nicht direkt im Root-Verzeichnis des Repositories liegt, muss du hier den Key "start_path" angeben:
+    #start_path: [Name des Verzeichnisses, in dem 'antora.yml' liegt].
+    #Hier kannst du angeben, welcher Branch gebaut werden soll. "HEAD" baut immer den aktuellen Branch, den du ausgecheckt hast.
+    #branches: [main]
     branches: HEAD
 ui:
   bundle:
+    #Gib hier den Link zum css an.
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
 runtime: 

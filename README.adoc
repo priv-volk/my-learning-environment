@@ -65,6 +65,16 @@ http://localhost/eqs-doc/English/
 
 http://localhost/eqs-doc/[branch name]/
 
+== My Product Repo
+
+"/d/git/docs/my-learning-environment"
+
+Generate HTML Output:
+open terminal
+cd to "/d/git/docs/my-learning-environment"
+run: Wenn Antora lokal installiert ist: "npx antora antora-playbook.yml"
+run: Wenn Antora remote installiert ist: "antora antora-playbook.yml"
+
 == IR Repo
 
 "/c/git/ir-cockpit-docs"
