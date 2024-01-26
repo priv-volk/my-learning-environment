@@ -1,11 +1,11 @@
 :page-partial:
 
-// [#EQS_ComplianceCockpit]
-// = The {cockpit-name} User Manual
+[#MyProduct]
+= The {cockpit-name} User Manual
 
 //include::English@eqs-doc::partial$intro/cockpit.adoc[]
 
-== xref:approval-manager:approval-manager_intro.adoc[_App 1_]
+== xref:App-01:app-01_intro.adoc[_App 1_]
 
 //include::English@eqs-doc::partial$intro/approval-manager.adoc[]
 

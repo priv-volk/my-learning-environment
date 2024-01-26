@@ -1,9 +1,5 @@
 .Welcome
-* xref:index.adoc#EQS_ComplianceCockpit[The {cockpit-name} User Manual] +
-* xref:communication:docs-conventions.adoc#Docs_Conventions[How to Use this User Manual] +
-* xref:cockpit:eqs-cockpit_login.adoc#Cockpit_LogIn_Initial[Login] +
-* xref:cockpit:password_change.adoc#Cockpit_Personal_ChangePassword[Change Password]
-//* xref:cockpit:cockpit_intro.adoc#{cockpit-name}[{cockpit-name}]
+* xref:index.adoc#MyProduct[The {cockpit-name} User Manual] 
 
 //-
 

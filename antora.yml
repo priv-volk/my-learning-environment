@@ -8,7 +8,7 @@ nav:
 - modules/ROOT/nav_root.adoc
 asciidoc:
     attributes:
-        cockpit-name: EQS COMPLIANCE COCKPIT
+        cockpit-name: MY PRODUCT
         app-icon: app icon@
         app-name: app name@
         news-type: news type@
