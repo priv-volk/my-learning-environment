@@ -6,6 +6,7 @@ display version: "English"
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/nav_root.adoc
+- modules/App-01/nav_app-01.adoc
 asciidoc:
     attributes:
         cockpit-name: MY PRODUCT
