@@ -1,5 +1,5 @@
-.Welcome
-* xref:index.adoc#MyProduct[The {cockpit-name} User Manual] 
+.Willkommen
+* xref:index.adoc#MyProduct[Das {cockpit-name} Anwender-Handbuch] 
 
 //-
 
